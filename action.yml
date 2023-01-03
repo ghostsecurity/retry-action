@@ -1,6 +1,10 @@
 ---
-name: 'Retry Action'
+name: 'Simple Shell Retry Action'
 description: 'Take a command and retry it a give number of times'
+branding:
+  icon: 'repeat'
+  color: 'purple'
+
 inputs:
   retry-count:
     description: How many times to retry
