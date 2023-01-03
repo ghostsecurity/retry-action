@@ -23,8 +23,10 @@ function run() {
         for (var i = 0; i < retryCount; i++) {
             try {
                 (0, child_process_1.execSync)(command, { stdio: 'inherit' });
+                console.info("command executed successfully, no need to retry");
             }
             catch (error) {
+                console.error(error);
                 if (i == retryCount - 1) {
                     console.error("failed to execute command after " + retryCount + " retries");
                     (0, process_1.exit)(1);

@@ -14,7 +14,9 @@ async function run() {
     for (var i = 0; i < retryCount; i++) {
         try {
             execSync(command, { stdio: 'inherit' });
+            console.info("command executed successfully, no need to retry")
         } catch (error) {
+            console.error(error)
             if (i == retryCount - 1) {
                 console.error("failed to execute command after " + retryCount + " retries")
                 exit(1)
