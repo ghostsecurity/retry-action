@@ -24,6 +24,7 @@ function run() {
             try {
                 (0, child_process_1.execSync)(command, { stdio: 'inherit' });
                 console.info("command executed successfully, no need to retry");
+                break;
             }
             catch (error) {
                 console.error(error);
