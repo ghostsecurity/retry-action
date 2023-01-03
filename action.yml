@@ -1,0 +1,17 @@
+---
+name: 'Retry Action'
+description: 'Take a command and retry it a give number of times'
+inputs:
+  retry-count:
+    description: How many times to retry
+    required: true
+    default: 5
+  command:
+    description: The command to run
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.retry-count }}
+    - ${{ inputs.command }}
