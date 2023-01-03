@@ -10,10 +10,28 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@actions/core");
+const child_process_1 = require("child_process");
+const process_1 = require("process");
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
-        let retryCount = (0, core_1.getInput)('retry-count');
-        console.log(retryCount);
+        const retryCountInput = (0, core_1.getInput)('retry-count');
+        var retryCount = 5;
+        if (Number.isInteger(retryCountInput)) {
+            retryCount = Number.parseInt(retryCountInput);
+        }
+        const command = (0, core_1.getInput)('command');
+        for (var i = 0; i < retryCount; i++) {
+            try {
+                (0, child_process_1.execSync)(command, { stdio: 'inherit' });
+            }
+            catch (error) {
+                if (i == retryCount - 1) {
+                    console.error("failed to execute command after " + retryCount + " retries");
+                    (0, process_1.exit)(1);
+                }
+                console.info("failed to execute command, retrying with attempt " + i + 1 + "/" + retryCount + "...");
+            }
+        }
     });
 }
 run();
