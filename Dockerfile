@@ -1,4 +1,4 @@
-FROM alpine:3.15
+FROM golang:1.19.4-alpine3.17
 
 RUN apk add --no-cache --update bash make
 
