@@ -17,7 +17,7 @@ The number of times to retry, defaults to 5
 ## Example usage
 
 ```yaml
-uses: owenrumney/retry-action@v1
+uses: ghostsecurity/retry-action@v1
 with:
   retry-count: 5
   command: |
